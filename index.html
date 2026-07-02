@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบดูสลิปเงินเดือน</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f0f2f5; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box { 
+            background: white; 
+            padding: 40px 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            text-align: center; 
+            width: 100%; 
+            max-width: 350px; 
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 24px;
+        }
+        input { 
+            width: 100%; 
+            padding: 14px; 
+            margin: 20px 0; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            text-align: center; 
+            font-size: 18px; 
+        }
+        button { 
+            width: 100%; 
+            padding: 14px; 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: background 0.2s;
+        }
+        button:hover { 
+            background: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>📄 ค้นหาสลิปเงินเดือน</h2>
+        <input type="text" id="empId" placeholder="กรอกรหัสพนักงาน เช่น EMP001">
+        <button onclick="openSlip()">ดูสลิปเงินเดือน</button>
+    </div>
+
+    <script>
+        function openSlip() {
+            // ดึงค่ารหัสพนักงานที่พิมพ์ และตัดช่องว่างหน้า-หลังออก
+            const empId = document.getElementById('empId').value.trim();
+            
+            // ถ้าไม่ได้กรอกอะไรเลย ให้แจ้งเตือน
+            if (empId === "") {
+                alert("กรุณากรอกรหัสพนักงานก่อนค่ะ");
+                return;
+            }
+            
+            // สั่งเปิดไฟล์ PDF ที่อยู่ในโฟลเดอร์ slips ขึ้นมาในแท็บใหม่ทันที
+            window.open(`slips/${empId}.pdf`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
